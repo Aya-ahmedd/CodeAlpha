@@ -1,43 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Personal Portfolio</title>
-  <link rel="stylesheet" href="assets/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Portfolio Section -->
-  <header>
-    <h1>Welcome to My Portfolio!</h1>
-    <p>I am [Your Name], a passionate [Your Profession]. Here are some of my projects.</p>
-  </header>
-  
-  <section class="projects">
-    <h2>My Projects</h2>
-    <div class="project-item">
-      <h3>Project 1: [Project Title]</h3>
-      <p>Description of project 1...</p>
-    </div>
-    <!-- Add more projects here -->
-  </section>
-  
-  <!-- Resume Section -->
-  <section class="resume">
-    <h2>My Resume</h2>
-    <p>Here’s a link to download my <a href="assets/Your-Resume.pdf" target="_blank">resume</a></p>
-  </section>
-  
-  <!-- Chatbot Section -->
-  <section class="chatbot">
-    <h2>Ask Me Anything!</h2>
-    <div id="chatbox">
-      <div id="chat-area"></div>
-      <input type="text" id="user-input" placeholder="Ask a question...">
-      <button id="send-btn">Send</button>
-    </div>
-  </section>
 
-  <script src="js/chatbot.js"></script>
+    <div class="chat-container">
+        <div class="chat-header">
+            <h2>Chatbot</h2>
+        </div>
+        <div class="chat-box" id="chat-box">
+            <div class="bot-message">Hello! How can I assist you today?</div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="user-input" placeholder="Type your message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

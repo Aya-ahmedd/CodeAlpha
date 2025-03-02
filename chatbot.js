@@ -1,32 +1,41 @@
-document.getElementById('send-btn').addEventListener('click', function() {
-  const userInput = document.getElementById('user-input').value;
+function sendMessage() {
+  let userInput = document.getElementById("user-input").value;
   if (userInput.trim() === "") return;
-  addMessage(userInput, 'user');
-  getChatbotResponse(userInput);
-  document.getElementById('user-input').value = "";
-});
 
-function addMessage(message, sender) {
-  const chatArea = document.getElementById('chat-area');
-  const messageDiv = document.createElement('div');
-  messageDiv.classList.add(sender);
-  messageDiv.textContent = message;
-  chatArea.appendChild(messageDiv);
-  chatArea.scrollTop = chatArea.scrollHeight;
+  let chatBox = document.getElementById("chat-box");
+
+  // Display user message
+  let userMessage = document.createElement("div");
+  userMessage.className = "user-message";
+  userMessage.innerText = userInput;
+  chatBox.appendChild(userMessage);
+
+  // Clear input field
+  document.getElementById("user-input").value = "";
+
+  // Auto-scroll to bottom
+  chatBox.scrollTop = chatBox.scrollHeight;
+
+  // Simulated bot response
+  setTimeout(() => {
+      let botMessage = document.createElement("div");
+      botMessage.className = "bot-message";
+      botMessage.innerText = getBotResponse(userInput);
+      chatBox.appendChild(botMessage);
+      chatBox.scrollTop = chatBox.scrollHeight;
+  }, 1000);
 }
 
-function getChatbotResponse(userQuery) {
-  fetch('http://127.0.0.1:5000/chat', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ "user_input": userQuery })
-  })
-  .then(response => response.json())
-  .then(data => addMessage(data.response, 'bot'))
-  .catch(error => {
-    console.error('Error:', error);
-    addMessage("There was an error with the chatbot.", 'bot');
-  });
+// Simple bot responses (you can replace this with an AI API)
+function getBotResponse(input) {
+  input = input.toLowerCase();
+  if (input.includes("hello")) {
+      return "Hi there! How can I help?";
+  } else if (input.includes("how are you")) {
+      return "I'm just a bot, but I'm doing great! What about you?";
+  } else if (input.includes("bye")) {
+      return "Goodbye! Have a nice day.";
+  } else {
+      return "I'm not sure how to respond to that. Can you ask something else?";
+  }
 }
